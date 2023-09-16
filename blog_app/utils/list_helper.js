@@ -15,6 +15,51 @@ const favouriteBlog = (blogs) => {
     return [blogs[most_liked]]
 }
 
+const mostBlogs = (blogs) => {
+    let author_object = {}
+    let author = ''
+    for(let i = 0; i < blogs.length; i++){
+        author = blogs[i].author
+        if(!author_object[author]){
+            author_object[author] = 1
+        }else{author_object[author] += 1}
+    }
+    console.log(author_object);
+    let max_author = ''
+    for (const auth in author_object){
+        console.log(auth);
+        if(author_object[auth] > author_object[max_author] || !max_author){
+            max_author = auth
+            
+        }
+    }
+    return {author: max_author, blogs: author_object[max_author]} 
+}
+
+
+const mostLikes = (blogs) => {
+    let author_object = {}
+    let author = ''
+    let likes = 0
+    for(let i = 0; i < blogs.length; i++){
+        author = blogs[i].author
+        likes = blogs[i].likes
+        if(!author_object[author]){
+            author_object[author] = likes
+        }else{author_object[author] += likes}
+    }
+    console.log(author_object);
+    let max_author = ''
+    for (const auth in author_object){
+        console.log(auth);
+        if(author_object[auth] > author_object[max_author] || !max_author){
+            max_author = auth
+            
+        }
+    }
+    return {author: max_author, likes: author_object[max_author]} 
+}
+
 module.exports = {
-    totalLikes, favouriteBlog
+    totalLikes, favouriteBlog, mostBlogs, mostLikes
   }

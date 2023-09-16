@@ -81,3 +81,23 @@ describe('blog with most likes', () => {
         expect(result).toEqual([listWithMultipleBlogs[2]])
     })
 })
+describe('author with most blogs', () => {
+    test('when list has multiple blogs it returns author with most blogs', () => {
+        const result = listHelper.mostBlogs(listWithMultipleBlogs)
+        expect(result).toEqual({author: 'Robert C. Martin', blogs:3})
+    })
+    test('when list has only one blog it returns the author of that blog', () => {
+        const result = listHelper.mostBlogs(listWithOneBlog)
+        expect(result).toEqual({author: 'Edsger W. Dijkstra', blogs:1})
+    })
+})
+describe('author with most likes', () => {
+    test('when list has multiple blogs it returns author with most likes', () => {
+        const result = listHelper.mostLikes(listWithMultipleBlogs)
+        expect(result).toEqual({author: 'Edsger W. Dijkstra', likes: 17})
+    })
+    test('when list has one blog it returns the author of that blog', () => {
+        const result = listHelper.mostLikes(listWithOneBlog)
+        expect(result).toEqual({author: 'Edsger W. Dijkstra', likes: 5})
+    })
+})
