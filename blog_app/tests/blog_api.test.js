@@ -72,6 +72,31 @@ test('like count will default to 0', async () => {
 
 })
 
+test('delete request functions as expected', async () => {
+    let blogs = await Blog.find({})
+    blogs = blogs.map(blog => blog.toJSON())
+    await api
+        .delete(`/api/blogs/${blogs[0].id}`)
+    const response = await api.get('/api/blogs')
+    expect(response.body).toHaveLength(initialBlogs.length - 1)
+})
+
+test('put request updates blog', async () => {
+    const updatedBlog = {
+        title: "b",
+        author: "a",
+        url: "a",
+        likes: 1
+    }
+    let blogs = await Blog.find({})
+    blogs = blogs.map(blog => blog.toJSON())
+    await api
+        .put(`/api/blogs/${blogs[0].id}`)
+        .send(updatedBlog)
+        .expect(204)
+
+})
+
 afterAll(async () => {
     await mongoose.connection.close()
 })
