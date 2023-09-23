@@ -59,6 +59,13 @@ const listWithMultipleBlogs = [
       __v: 0
     }  
 ]
+
+test('dummy returns one', () => {
+    const blogs = []
+  
+    const result = listHelper.dummy(blogs)
+    expect(result).toBe(1)
+  })
 describe('total likes', () => {
     
     test('when list has only one blog, equals the likes of that', () => {
